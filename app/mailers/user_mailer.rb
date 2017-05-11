@@ -1,6 +1,9 @@
 class UserMailer < ApplicationMailer
-  def registration_confirmation(user)
-    @user = user
+  default from: 'corentin.cotton@free.fr'
 
-    mail to: @user.mail, subject:"registration_confirmation "
+  def welcome_email(user)
+    @user = user
+    @url  = 'http://example.com/login'
+    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  end
 end

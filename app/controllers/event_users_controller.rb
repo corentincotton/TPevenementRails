@@ -28,6 +28,7 @@ class EventUsersController < ApplicationController
 
     respond_to do |format|
       if @event_user.save
+        UserMailer.welcome_email(@event_user.user).deliver_now
         format.html { redirect_to @event_user, notice: 'Event user was successfully created.' }
         format.json { render :show, status: :created, location: @event_user }
       else
